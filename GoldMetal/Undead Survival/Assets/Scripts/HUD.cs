@@ -35,16 +35,21 @@ public class HUD : MonoBehaviour
                 mySlider.value = curExp / maxExp;
                 break;
             case InfoType.Level:
-                //myText.text = "Level : " + GameManager.instance.player.level;
+                myText.text = string.Format("Lv.{0:F0}", GameManager.instance.level);
                 break;
             case InfoType.Kill:
-                //myText.text = "Kill : " + GameManager.instance.killCount;
+                myText.text = string.Format("{0:F0}", GameManager.instance.kill);
                 break;
             case InfoType.Time:
-                //yText.text = "Time : " + GameManager.instance.playTime.ToString("N2");
+                float remainTime = GameManager.instance.MaxGameTime - GameManager.instance.gameTime;
+                int min = Mathf.FloorToInt(remainTime / 60);
+                int sec = Mathf.FloorToInt(remainTime % 60);
+                myText.text = string.Format("{0:D2}:{1:D2}", min, sec);
                 break;
             case InfoType.hp:
-                //mySlider.value = GameManager.instance.player.hp / GameManager.instance.player.maxHp;
+                float curHp = GameManager.instance.hp;
+                float maxHp = GameManager.instance.maxHp;
+                mySlider.value = curHp / maxHp;
                 break;
         }   
     }

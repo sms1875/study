@@ -6,9 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [Header("# Game Control")]
-    public float gameTimer = 0f;
-    public float MaxGameTimer = 2 * 10f;
+    public float gameTime = 0f;
+    public float MaxGameTime = 2 * 10f;
     [Header("# Player Info")]
+    public int hp;
+    public int maxHp = 100;
     public int level;
     public int kill;
     public int exp;
@@ -22,13 +24,18 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        hp = maxHp;
+    }
+
     private void Update()
     {
-        gameTimer += Time.deltaTime;
+        gameTime += Time.deltaTime;
 
-        if (gameTimer > MaxGameTimer)
+        if (gameTime > MaxGameTime)
         {
-            gameTimer = MaxGameTimer;
+            gameTime = MaxGameTime;
         }
     }
 
